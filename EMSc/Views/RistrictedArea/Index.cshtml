@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    
+}
+
+   
+<style>
+    .panel-profile-img {
+    max-width: 80px;
+    height:100px;
+    margin-top: -70px;
+    margin-bottom: 5px;
+    border: 2px solid #000;
+    border-radius: 100%;
+    box-shadow:5px 5px 10px rgba(0,0,0,0.2);
+    background-color:#f7f7f7;
+   
+}
+        
+</style>
+<br />
+<div class="col-md-4 m-b-lg">
+    <div class="panel panel-default panel-profile m-b-0">
+        <div class="panel-heading" style="height:150px;background-image: url(https://image.freepik.com/free-vector/modern-abstract-background_1048-1003.jpg);background-size: cover"></div>
+        <div class="panel-body text-center">
+            <img class="panel-profile-img" src="https://www.dropbox.com/s/6v7ujosgqj0xr7d/4logo.png?raw=1">
+            <h5 class="panel-title"><strong>@ViewBag.user.name</strong></h5>
+            <p class="m-b" style="font-size:10px;">Administrator</p>
+            <p class="m-b" style="font-size:10px;">@ViewBag.timeStamp</p>
+            <a href="http://github.com/fat" target="_blank" class="btn btn-primary-outline btn-sm m-b">
+                <span class="icon icon-add-user"></span> View GitHub
+            </a>
+        </div>
+    </div>
+</div>
+

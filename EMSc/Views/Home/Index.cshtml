@@ -1,0 +1,36 @@
+﻿@using EMSc.Helpers;
+@{
+    ViewBag.Title = "Home Page";
+
+
+}
+
+<div class="jumbotron">
+</div>
+ 
+  
+<div class="row">
+    <div class="col-md-4">
+     <center>
+        @Html.ImageActionLink("List of Products", "ListOfProducts", "Home", null, null, "~/Content/img/WareHouse.png","style","width:128px;height:128px;padding:10px;")
+       </center>
+    </div>
+    <div class="col-md-4">
+     <center><a href="products/">Policy</a></center>
+    </div>
+    <div class="col-md-4">
+     <center><a href="products/">Insurrance</a></center>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <center><a href="products/">Image Repository</a></center>
+    </div>
+    <div class="col-md-4">
+        <center><a href="products/">Shipping</a></center>
+    </div>
+    <div class="col-md-4">
+        <center><a href="products/">Settings</a></center>
+    </div>
+</div>

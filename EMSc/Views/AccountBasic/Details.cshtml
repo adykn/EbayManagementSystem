@@ -1,0 +1,92 @@
+﻿@model IEnumerable<EMSc.Models.a_pageinfoModel>
+@using EMSc.Helpers;
+@{
+    ViewBag.Title = "Details";
+    int id = 0;
+}
+
+<h2>Details</h2>
+<style>
+    th {
+        width:100px;
+        padding:10px;
+        background: #ededed;
+        background: -moz-linear-gradient(left, #ededed 0%, #f6f6f6 53%, #ffffff 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, #ededed), color-stop(53%, #f6f6f6), color-stop(100%, #ffffff));
+        background: -webkit-linear-gradient(left, #ededed 0%, #f6f6f6 53%, #ffffff 100%);
+        background: -o-linear-gradient(left, #ededed 0%, #f6f6f6 53%, #ffffff 100%);
+        background: -ms-linear-gradient(left, #ededed 0%, #f6f6f6 53%, #ffffff 100%);
+        background: linear-gradient(to right, #ededed 0%, #f6f6f6 53%, #ffffff 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff', GradientType=1 );
+    }
+    td {
+        width:200px;
+        padding:10px;
+    }
+    table {
+        width:400px;
+        margin-left:30%;
+        border:1px solid #f7f7f7;
+        box-shadow:5px 5px 10px rgba(0,0,0,0.2);
+        
+    }
+    #attribContainer {
+        width :100%
+    }
+    #attribs {
+        float:left;
+        text-align:center;
+        width:70px;
+    }
+    input {
+    
+    }
+</style>
+<table>
+    <tr><th colspan="2">Detailed Information of the selected Record</th></tr>
+    @foreach (var rs in Model)
+    {
+        foreach (var pro in rs.GetType().GetProperties())
+        {
+            {
+                if (pro.Name.ToLower() == "id") { id = Convert.ToInt32(pro.GetValue(rs, null)); }
+            }
+            if (@pro.Name != "attribs")
+            {
+                <tr><th>@toNameHelpers.toName(pro.Name)</th><td>@pro.GetValue(rs, null)</td></tr>
+            }
+            else
+            {
+                
+                    char[] at = null;
+                    string attrib = null;
+                    string chVal = null;
+                    int idx = 0;
+
+                    attrib = pro.GetValue(rs, null).ToString();
+                    at = attrib.ToCharArray();
+                    if (ViewBag.AccessType.Length > at.Length)
+                    {
+                        for (int q = 0; q < ViewBag.AccessType.Length - at.Length; q++)
+                        { attrib = attrib + 0; }
+                        at = attrib.ToCharArray();
+                    }
+
+                  
+                <tr><th>@toNameHelpers.toName(pro.Name)</th><td></td></tr>
+                <tr><th valign="top"></th><td>
+                    <div id="attribContainer">
+                        @foreach (var i in ViewBag.AccessType)
+                        {
+                                                         
+                            chVal = (at[idx] == '1') ? "checked" : ""; idx += 1;
+                       <div id="attribs">
+                            @i<br /><input disabled type="checkbox" @chVal />
+                        </div>
+                        }
+                    </div>
+                    </td></tr>}
+            }
+    }
+    <tr><th colspan="2" style="text-align:center;">@Html.ActionLink("Edit", "Edit", new { id = id }) | @Html.ActionLink("Index", "Index") </th></tr>
+</table>
