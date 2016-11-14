@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EMSc.Models.a_pageinfoModel>
+﻿@model IEnumerable<EMSc.Models.a_PageDefinitionModel>
 
 @{
     ViewBag.Title = "List of Pages & Policy";
@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.title)
+            @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.url)
+            @Html.DisplayNameFor(model => model.Url)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.attribs)
+            @Html.DisplayNameFor(model => model.Attribs)
         </th>
         <th></th>
     </tr>
@@ -26,18 +26,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.title)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.url)
+            @Html.DisplayFor(modelItem => item.Url)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.attribs)
+            @Html.DisplayFor(modelItem => item.Attribs)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Pid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Pid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Pid })
         </td>
     </tr>
 }

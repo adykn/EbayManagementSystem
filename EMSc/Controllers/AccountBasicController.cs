@@ -20,9 +20,9 @@ namespace EMSc.Controllers
             if (Session["User"] != null)
             {
 
-                ViewBag.user = (a_siteaccessModel)Session["User"];
+                ViewBag.User = (a_UserAAModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
-                var model = db.a_pageinfo.ToList();
+                var model = db.PageDefinition.ToList();
                 return View("Index", model);
             }
             else
@@ -36,9 +36,9 @@ namespace EMSc.Controllers
             if (Session["User"] != null)
             {
                
-                ViewBag.user = (a_siteaccessModel)Session["User"];
+                ViewBag.User = (a_UserAAModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
-                    var model = db.a_pageinfo.ToList(); 
+                    var model = db.PageDefinition.ToList(); 
                     return View("ListPagePolicies", model);
             }
             else
@@ -50,11 +50,11 @@ namespace EMSc.Controllers
             if (Session["User"] != null)
             {
 
-                ViewBag.user = (a_siteaccessModel)Session["User"];
+                ViewBag.User = (a_UserAAModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
                 var enums = Enum.GetNames(typeof(AccessTypes));
                 ViewBag.AccessType = enums;
-                var model = db.a_pageinfo.Where(c=>c.id==id);
+                var model = db.PageDefinition.Where(c=>c.Pid== id);
                 return View("Details" ,model);
             }
             else
@@ -66,13 +66,13 @@ namespace EMSc.Controllers
             if (Session["User"] != null)
             {
 
-                ViewBag.user = (a_siteaccessModel)Session["User"];
+                ViewBag.User = (a_UserAAModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
-                a_pageinfoModel existing = db.a_pageinfo.Find(id);
-                db.a_pageinfo.Remove(existing);
+                a_PageDefinitionModel existing = db.PageDefinition.Find(id);
+                db.PageDefinition.Remove(existing);
                 db.SaveChanges();
 
-                var model = db.a_pageinfo.ToList();
+                var model = db.PageDefinition.ToList();
                 return View("Index", model);
             }
             else
@@ -88,9 +88,9 @@ namespace EMSc.Controllers
                 var enums = Enum.GetNames(typeof(AccessTypes));
                 ViewBag.AccessType = enums;
                 ViewBag.SubVal = "Update";
-                ViewBag.user = (a_siteaccessModel)Session["User"];
+                ViewBag.User = (a_UserAAModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
-                var model = db.a_pageinfo.Find(id);
+                var model = db.PageDefinition.Find(id);
                 return View("create", model);
             }
             else
@@ -105,7 +105,7 @@ namespace EMSc.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var model = new a_pageinfoModel();
+                    var model = new a_PageDefinitionModel();
                     
                     var db = new ItemsDataContext();
                     Dictionary<string, string> dict = new Dictionary<string, string>();
@@ -128,10 +128,10 @@ namespace EMSc.Controllers
                     {
                         x += dict[i];
                     }
-                    model.id = Convert.ToInt32(Request.Form.Get(keys[1]));
-                    model.title = Request.Form.Get(keys[2]);
-                    model.url = Request.Form.Get(keys[3]);
-                    model.attribs = x;
+                    model.Pid = Convert.ToInt32(Request.Form.Get(keys[1]));
+                    model.Title = Request.Form.Get(keys[2]);
+                    model.Url = Request.Form.Get(keys[3]);
+                    model.Attribs = x;
 
 
                     //var upd = db.a_pageinfo.Find(c => c.id == model.id);
@@ -150,7 +150,7 @@ namespace EMSc.Controllers
         public ActionResult Create() {
             if (Session["User"] != null)
             {
-                ViewBag.user = (a_siteaccessModel)Session["User"];
+                ViewBag.User = (a_UserAAModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
                 ViewBag.SubVal = "Create";
                 var enums = Enum.GetNames(typeof(AccessTypes));
@@ -170,8 +170,7 @@ namespace EMSc.Controllers
             {
                 if (ModelState.IsValid)
                     {
-                    var model = new a_pageinfoModel();
-                    var db = new ItemsDataContext();
+                    var model = new a_PageDefinitionModel();
                     Dictionary<string, string> dict = new Dictionary<string, string>();
                     var enums = Enum.GetNames(typeof(AccessTypes));
                     var keys = Request.Form.AllKeys;
@@ -191,12 +190,12 @@ namespace EMSc.Controllers
                     {
                         x += dict[i];
                     }
-                    model.title = Request.Form.Get(keys[2]);
-                    model.url = Request.Form.Get(keys[3]);
-                    model.attribs = x;
+                    model.Title = Request.Form.Get(keys[2]);
+                    model.Url = Request.Form.Get(keys[3]);
+                    model.Attribs = x;
                     
 
-                    db.a_pageinfo.Add(model);
+                    db.PageDefinition.Add(model);
                     db.SaveChanges();
                     //var pro = new Products();
                     //pro.Insert(prod);

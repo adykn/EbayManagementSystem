@@ -20,6 +20,7 @@ namespace EMSc.Models
         public String Currency { get; set; }
         public String Country { get; set; }
         public String Title { get; set; }
+        public String SubTitle { get; set; }
         public string Description { get; set; }
         public Int32 Quantity { get; set; }
         public string Location { get; set; }
@@ -32,11 +33,13 @@ namespace EMSc.Models
         public string ListingType { get; set; }
         //public string BestOfferDetails { get; set; }
         public string PayPalEmailAddress { get; set; }
-        public string ApplicationData { get; set; }
+        //public string ApplicationData { get; set; }
         public long ConditionID { get; set; }
         public DateTime TimeStamp { get; set; }
         public virtual ShippingModel shipping { get; set; }
         public virtual PolicyModel policy { get; set; }
+        
+       
         //SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         //SqlCommand cmd = new SqlCommand();
 

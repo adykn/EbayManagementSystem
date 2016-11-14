@@ -4,7 +4,7 @@
     string x = "?";
     try
     {
-        x= ViewBag.user.name;
+        x= ViewBag.user.Name;
     }
     catch {
         x = "?";
@@ -14,7 +14,7 @@
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + x + "!", "SelfProfile", "RestrictedArea", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("Hello " + x + " !", "SelfProfile", "RestrictedArea", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li>@Html.ActionLink("Log off", "Logout", "Auth", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>

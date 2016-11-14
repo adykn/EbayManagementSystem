@@ -7,18 +7,13 @@ using System.Web;
 
 namespace EMSc.Models
 {
-    public class a_pageinfoModel
+    public class ProductSpecModel
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
-        [Required]
-        public string title { get; set; }
-        [Required]
-        public string url { get; set; }
-        [Required]
-        public string attribs { get; set; }
-        
-        
+        public long id { get; set; }
+        public virtual Products products { get; set; }
+        public string Attrib { get; set; }
+        public string Value { get; set; }
     }
 }

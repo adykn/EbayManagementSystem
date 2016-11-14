@@ -12,11 +12,26 @@ namespace EMSc.Models
         public ItemsDataContext()
             : base("DefaultConnection")
         {
+
+            var emp = new a_UserAAModel();
+            emp.Email = "4d.kh4n@gmail.com";
+            emp.Name = "Adnan khan";
+            emp.Password = "test";
+            emp.Picfid = 0;
+            emp.Contact = "03339323452";
+           
+            UserAccessAccounts.Add(emp);
+            SaveChanges();
+            
+
         }
-        public DbSet<a_siteaccessModel> a_siteaccess { get; set; }
-        public DbSet<a_siteaccesslistModel> a_siteaccesslist { get; set; }
-        public DbSet<a_pageinfoModel> a_pageinfo { get; set; }
+        public DbSet<a_UserAAModel> UserAccessAccounts { get; set; }
+        public DbSet<a_PageDefinitionModel> PageDefinition { get; set; }
+        public DbSet<a_GroupPoliciesModel> GroupPolicies { get; set; }
+        public DbSet<a_UserRolesModel> UserRolePolicie { get; set; }
         public DbSet<Products> Products { get; set; }
+        public DbSet<ProductSpecModel> ProductSpec { get; set; }
+        public DbSet<ProductsVariationsModel> ProductVeriations { get; set; }
         public DbSet<PolicyModel> Policy { get; set; }
         public DbSet<ShippingModel> Shipping { get; set; }
         public DbSet<ShippingServices> ShippingServices { get; set; }

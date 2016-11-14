@@ -211,6 +211,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RistrictedAreaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -219,19 +220,22 @@
     <Compile Include="Helpers\toNameHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountModel.cs" />
-    <Compile Include="Models\a_pageinfoModel.cs" />
-    <Compile Include="Models\a_siteaccessModel.cs" />
-    <Compile Include="Models\a_siteaccesslistModel.cs" />
+    <Compile Include="Models\a_PageDefinitionModel.cs" />
+    <Compile Include="Models\a_UserAAModel.cs" />
     <Compile Include="Models\getlistfrmFtp.cs" />
     <Compile Include="Models\GeneralViewModel.cs" />
+    <Compile Include="Models\a_GroupPoliciesModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\ItemsDataContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PolicyModel.cs" />
     <Compile Include="Models\Products.cs" />
+    <Compile Include="Models\ProductSpecModel.cs" />
+    <Compile Include="Models\ProductsVariationsModel.cs" />
     <Compile Include="Models\ShippingModel.cs" />
     <Compile Include="Models\ShippingServices.cs" />
+    <Compile Include="Models\a_UserRolesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -306,6 +310,11 @@
     <Content Include="Views\AccountBasic\Create.cshtml" />
     <Content Include="Views\AccountBasic\Details.cshtml" />
     <Content Include="Views\AccountBasic\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Steps.cshtml" />
+    <Content Include="Views\Products\_Step1.cshtml" />
+    <Content Include="Views\Products\_Step2.cshtml" />
+    <Content Include="Views\Products\_Step4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

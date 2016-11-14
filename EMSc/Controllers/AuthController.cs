@@ -17,41 +17,35 @@ namespace EMSc.Controllers
         public ActionResult Index()
         {
 
-            a_siteaccessModel model = new a_siteaccessModel();
+            a_UserAAModel model = new a_UserAAModel();
             if (Request.Cookies["Login"] != null)
             {
-                model.email = Request.Cookies["Login"].Values["email"];
-                model.password = Request.Cookies["Login"].Values["password"];
-                model.apiToken = Request.Cookies["Login"].Values["Token"];
+                model.Email = Request.Cookies["Login"].Values["email"];
+                model.Password = Request.Cookies["Login"].Values["password"];
+                model.ApiToken = Request.Cookies["Login"].Values["Token"];
                 return Login(model);
               }
-            
-
-            //FormsAuthentication.SignOut();
-            //Session.Abandon();
-            //HttpCookie cookie = new HttpCookie("Login");
-            //cookie.Expires = DateTime.Now.AddDays(-1);
-            //Response.Cookies.Add(cookie);
-            return RedirectToAction("Login", "Auth");
-
-
+                         return RedirectToAction("Login", "Auth");
         }
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Login([Bind(Exclude = "id,picfid,name,contact")]a_siteaccessModel loginDetails)
+        public ActionResult Login([Bind(Exclude = "id,picfid,name,contact")]a_UserAAModel loginDetails)
         {
             
 
             if (ModelState.IsValid)
             {
+                
+                  var emp = db.UserAccessAccounts.ToList();
+                 
+                 
+                
+               
 
-                var emp = db.a_siteaccess.ToList();
-                var list = db.a_siteaccesslist;
-
-                var LoginUser = emp.Where(a => a.email == loginDetails.email && a.password == loginDetails.password).FirstOrDefault();
+                var LoginUser = emp.Where(a => a.Email == loginDetails.Email && a.Password == loginDetails.Password).FirstOrDefault();
                 if (LoginUser != null)
                 {
-                    FormsAuthentication.SetAuthCookie(loginDetails.email, loginDetails.RememberMe);
+                    FormsAuthentication.SetAuthCookie(loginDetails.Email, loginDetails.RememberMe);
                     Session["User"] = LoginUser;
                     Session["timeStamp"] = DateTime.Now;
                     //Session["list"] = list.Find(LoginUser.id);
@@ -61,9 +55,9 @@ namespace EMSc.Controllers
                     if (loginDetails.RememberMe)
                     {
                         HttpCookie cookie = new HttpCookie("Login");
-                        cookie.Values.Add("email", LoginUser.email);
-                        cookie.Values.Add("password", LoginUser.password);
-                        cookie.Values.Add("Token", LoginUser.apiToken);
+                        cookie.Values.Add("email", LoginUser.Email);
+                        cookie.Values.Add("password", LoginUser.Password);
+                        cookie.Values.Add("Token", LoginUser.ApiToken);
                         cookie.Expires = DateTime.Now.AddDays(14);
                         Response.Cookies.Add(cookie);
 
@@ -95,7 +89,7 @@ namespace EMSc.Controllers
 
         public ActionResult PCC() { return View(); }
         [HttpPost]
-        public ActionResult PCC([Bind(Exclude = "id,picfid,name,contact")]a_siteaccessModel loginDetails) {
+        public ActionResult PCC([Bind(Exclude = "id,picfid,name,contact")]a_UserAAModel loginDetails) {
             return View();
         }
 

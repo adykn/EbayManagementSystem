@@ -13,9 +13,9 @@ namespace EMSc.Controllers
         public ActionResult Index()
         {
             
-            if (Session["User"] != null)
+           if (Session["User"] != null)
             {
-                ViewBag.user = (a_siteaccessModel)Session["User"];
+                ViewBag.User = (a_UserAAModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
                 return View();
             }
