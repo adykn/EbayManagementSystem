@@ -32,13 +32,13 @@ namespace EMSc.Controllers
                 var Gh1 = new a_GroupHeadModel(); Gh1.Title = "Developer"; db.GroupHead.Add(Gh1);
                 var Gh2 = new a_GroupHeadModel(); Gh2.Title = "Administration"; db.GroupHead.Add(Gh2);
                 var Gh3 = new a_GroupHeadModel(); Gh3.Title = "DataEntryOperator"; db.GroupHead.Add(Gh3);
-
-                var page = new a_PageDefinitionModel(); page.Title = "Products"; page.Url = "Products"; page.Attribs = "100";
-                var page1 = new a_PageDefinitionModel(); page1.Title = "Products2"; page1.Url = "Products"; page1.Attribs = "100";
-
-                var x = new a_GroupPoliciesModel(); x.Attribs = "100"; x.GroupHead = Gh1; x.PageDefinition = page;
-
-                var role = new a_RolesModel(); role.SiteAccessUser = emp; role.GroupPolicy = x;
+               
+                var page = new a_PageDefinitionModel(); page.Title = "Products"; page.Url = "Products"; page.Attribs = "100"; db.PageDefinition.Add(page);
+                var page1 = new a_PageDefinitionModel(); page1.Title = "Products2"; page1.Url = "Products"; page1.Attribs = "100"; db.PageDefinition.Add(page1);
+                
+                var x = new a_GroupPoliciesModel(); x.Attribs = "100"; x.GroupHead = Gh1; x.PageDefinition = page;db.GroupPolicies.Add(x);
+               
+                var role = new a_Roles(); role.SiteAccessUser = emp; role.GroupPolicy = x; db.UserRolePolicie.Add(role);
 
                 db.SaveChanges();
                 RedirectToAction("Logout", "Auth");
@@ -75,7 +75,7 @@ namespace EMSc.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(loginDetails.Email, loginDetails.RememberMe);
                     var rsult=role.Where(x => x.SiteAccessUser.id == LoginUser.id);
-                    if (rsult == null) { ModelState.AddModelError("", "Login data is incorrect!"); }
+                    if (rsult.Count() == 0) { ModelState.AddModelError("", "Login data is incorrect!"); return RedirectToAction("Login", "Auth"); }
                     Session["User"] = rsult;
                     Session["timeStamp"] = DateTime.Now;
                     //Session["list"] = list.Find(LoginUser.id);

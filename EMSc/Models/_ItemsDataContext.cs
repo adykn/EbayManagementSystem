@@ -18,7 +18,7 @@ namespace EMSc.Models
         public DbSet<a_PageDefinitionModel> PageDefinition { get; set; }
         public DbSet<a_GroupPoliciesModel> GroupPolicies { get; set; }
         public DbSet<a_GroupHeadModel> GroupHead { get; set; }
-        public DbSet<a_RolesModel> UserRolePolicie { get; set; }
+        public DbSet<a_Roles> UserRolePolicie { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<ProductSpecModel> ProductSpec { get; set; }
         public DbSet<ProductsVariationsModel> ProductVeriations { get; set; }

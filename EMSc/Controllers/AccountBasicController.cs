@@ -22,7 +22,7 @@ namespace EMSc.Controllers
             if (Session["User"] != null)
             {
 
-                ViewBag.User = (a_RolesModel)Session["User"];
+                ViewBag.User = (a_Roles)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
                 var model = db.PageDefinition.ToList();
                 return View("Index", model);
@@ -38,7 +38,7 @@ namespace EMSc.Controllers
             if (Session["User"] != null)
             {
                
-                ViewBag.User = (a_RolesModel)Session["User"];
+                ViewBag.User = (a_Roles)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
 
                 var enums = Enum.GetNames(typeof(AccessTypes));
@@ -56,7 +56,7 @@ namespace EMSc.Controllers
             if (Session["User"] != null)
             {
 
-                ViewBag.User = (a_RolesModel)Session["User"];
+                ViewBag.User = (a_Roles)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
                 var enums = Enum.GetNames(typeof(AccessTypes));
                 ViewBag.AccessType = enums;
@@ -94,7 +94,7 @@ namespace EMSc.Controllers
                 var enums = Enum.GetNames(typeof(AccessTypes));
                 ViewBag.AccessType = enums;
                 ViewBag.SubVal = "Update";
-                ViewBag.User = (a_RolesModel)Session["User"];
+                ViewBag.User = (a_Roles)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
                 var model = db.PageDefinition.Find(id);
                 return View("create", model);
