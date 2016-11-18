@@ -5,7 +5,7 @@
     string x = "?";
     try
     {
-        var UserData = ViewBag.User as IEnumerable<EMSc.Models.a_RolesModel>;
+        var UserData = ViewBag.User as IEnumerable<EMSc.Models.a_Roles>;
         x = UserData.FirstOrDefault().SiteAccessUser.Name;
     }
     catch {

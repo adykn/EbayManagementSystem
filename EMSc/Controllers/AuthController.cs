@@ -36,8 +36,9 @@ namespace EMSc.Controllers
                 var page = new a_PageDefinitionModel(); page.Title = "Products"; page.Url = "Products"; page.Attribs = "100"; db.PageDefinition.Add(page);
                 var page1 = new a_PageDefinitionModel(); page1.Title = "Products2"; page1.Url = "Products"; page1.Attribs = "100"; db.PageDefinition.Add(page1);
                 
-                var x = new a_GroupPoliciesModel(); x.Attribs = "100"; x.GroupHead = Gh1; x.PageDefinition = page;db.GroupPolicies.Add(x);
-               
+                var x = new a_GroupPoliciesModel(); x.Attribs = "100"; x.GroupHead = Gh1; x.PageDefinition.Add(page);db.GroupPolicies.Add(x);
+                var y = new a_GroupPoliciesModel();y.Attribs = "100"; y.GroupHead = Gh1; y.PageDefinition.Add(page); db.GroupPolicies.Add(y);
+
                 var role = new a_Roles(); role.SiteAccessUser = emp; role.GroupPolicy = x; db.UserRolePolicie.Add(role);
 
                 db.SaveChanges();

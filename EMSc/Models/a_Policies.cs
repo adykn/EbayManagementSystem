@@ -61,7 +61,7 @@ namespace EMSc.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public virtual a_GroupHeadModel GroupHead { get; set; }
-        public virtual a_PageDefinitionModel PageDefinition { get; set; }
+        public virtual IList<a_PageDefinitionModel> PageDefinition { get; set; }
         [Required]
         public string Attribs { get; set; }
 
