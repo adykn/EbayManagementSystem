@@ -7,20 +7,17 @@ using System.Web;
 
 namespace EMSc.Models
 {
-    public class a_PageDefinitionModel
+    public class StoreModel
     {
         
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
-        [Required]
+        public long id { get; set; }
         public string Title { get; set; }
-        [Required]
+        public string Description { get; set; }
         public string Url { get; set; }
-        [Required]
-        public string Attribs { get; set; }
-        //[NotMapped]
-        public virtual ICollection<a_GroupPoliciesModel> GroupPolicy { get; set; }
+        public string ApiToken { get; set; }
+        public ICollection<Products> products { get; set; }
 
 
     }

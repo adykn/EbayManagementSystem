@@ -6,15 +6,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.ObjectModel;
 using EMSc.Models;
+using System.Collections.Generic;
 
 namespace EMSc.Models
 {
     public class Products
     {
+        
         public enum Duration { Day_1, Day_2, Day_3, Day_4, Day_5, Day_6, Day_7, Day_8 }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public long id { get; set; }
+    
         public long itemid { get; set; }
         public String sku { get; set; }
         public String Currency { get; set; }
@@ -36,10 +39,11 @@ namespace EMSc.Models
         //public string ApplicationData { get; set; }
         public long ConditionID { get; set; }
         public DateTime TimeStamp { get; set; }
-        public virtual ShippingModel shipping { get; set; }
-        public virtual PolicyModel policy { get; set; }
-        
+        public   PolicyModel policy { get; set; }
+        public   StoreModel store { get; set; }
+        public   ICollection<ShippingModel> shipping { get; set; }
        
+
         //SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         //SqlCommand cmd = new SqlCommand();
 

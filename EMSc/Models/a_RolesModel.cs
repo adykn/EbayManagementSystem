@@ -7,15 +7,15 @@ using System.Web;
 
 namespace EMSc.Models
 {
-    public class a_UserRolesModel
+    public class a_RolesModel
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int Rid { get; set; }
-        [Required]
-        public virtual a_UserAAModel SiteAccessUser { get; set; }
+        public int id { get; set; }
         [Required]
         public virtual a_GroupPoliciesModel GroupPolicy { get; set; }
+        [Required]
+        public virtual a_UserAAModel SiteAccessUser { get; set; }
 
     }
 }

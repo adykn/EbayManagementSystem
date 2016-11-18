@@ -20,9 +20,9 @@ namespace EMSc.Models
         public int InsuranceOption { get; set; }
 		public string PaymentInstructions { get; set; }
 		public int ShippingType { get; set; }
-		public virtual ShippingServices shippingServices { get; set; }
-          
-        
-		
+		public ShippingServices shippingServices { get; set; }
+        public Products products { get; set; }
+
+
     }
 }

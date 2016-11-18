@@ -10,17 +10,23 @@ namespace EMSc.Controllers
     public class RistrictedAreaController : Controller
     {
         // GET: RistrictedArea
+        private _ItemsDataContext db = new _ItemsDataContext();
         public ActionResult Index()
         {
             
            if (Session["User"] != null)
             {
-                ViewBag.User = (a_UserAAModel)Session["User"];
+                ViewBag.User = Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
+                //var Users = (List<a_UserRolesModel>)ViewBag.User;
+                //var getlist = ViewBag.User as IEnumerable<EMSc.Models.a_UserRolesModel>;
+                //var x = getlist.FirstOrDefault().SiteAccessUser.Name;
+
+                //ViewBag.Tiles = 
                 return View();
             }
             else {
-                return RedirectToAction("Login", "Auth");
+                return RedirectToAction("index", "Auth");
             }
         }
     }

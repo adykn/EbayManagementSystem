@@ -1,0 +1,99 @@
+﻿@model IEnumerable<EMSc.Models.a_GroupPoliciesModel>
+
+@{
+    ViewBag.Title = "GroupList";
+    
+}
+
+<h2>GroupList</h2>
+
+<p>
+    <div style="float:right;width:150;"> @Html.ActionLink("Create New", "GroupAdd")</div>
+</p>
+<table class="table">
+@foreach (var cat in ViewBag.GroupHead)
+{
+    int rows = Model.Where(x => x.GroupHead.id == cat.id).Count();
+   
+    if (rows != 0)
+    {
+
+    <tr>
+        <th colspan="4">
+            @cat.Title
+        </th>
+    </tr>
+        <tr>
+
+        <th>
+            
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PageDefinition.Title)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Attribs)
+        </th>
+        <th></th>
+    </tr>
+    }
+    foreach (var item in Model.Where(x => x.GroupHead.id == cat.id))
+    {
+
+
+    <tr>
+        <td style="width:150px;">
+       
+
+        </td>
+        <td valign="middle">
+            @Html.DisplayFor(modelItem => item.PageDefinition.Title)
+
+        </td>
+         
+        <td>
+            @{
+                char[] at = null;
+                string attrib = null;
+                string chVal = null;
+                int idx = 0;
+
+                attrib = item.Attribs;
+                at = attrib.ToCharArray();
+                if (ViewBag.AccessType.Length > at.Length)
+                {
+                    for (int q = 0; q < ViewBag.AccessType.Length - at.Length; q++)
+                    { attrib = attrib + 0; }
+                    at = attrib.ToCharArray();
+                }
+            }
+            <style> 
+            #attribContainer {
+                    width :100%
+                }
+                #attribs {
+                    float:left;
+                    text-align:center;
+                    width:60px;
+            }</style>
+            <div id="attribContainer">
+                @foreach (var i in ViewBag.AccessType)
+                {
+
+                    chVal = (at[idx] == '1') ? "checked" : ""; idx += 1;
+                    <div id="attribs">
+                        @i<br /><input disabled type="checkbox" @chVal />
+                    </div>
+                }
+            </div>
+
+        </td>
+        <td>
+            [ @Html.ActionLink("Edit", "GroupEdit", new { id = item.id }) | @Html.ActionLink("Delete", "Delete", new { id = item.id }) ]
+        </td>
+    </tr>
+                }
+                }
+</table>

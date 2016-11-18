@@ -2,9 +2,46 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<style>
+    #tile {
+      width:150px;float:left; margin:10px;text-align:center;height:100px;
+    box-shadow:5px 5px 10px rgba(0,0,0,0.2);
+    }
+    #tile:hover {
+        box-shadow:2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .tileHead { width:100%;height:50px;
+                background-image: url(https://image.freepik.com/free-vector/modern-abstract-background_1048-1003.jpg);background-size: cover
+    }
+    #tileTxt {
+   text-shadow: 2px 2px 1px rgba(150, 150, 150, 1);
+    } #tileTxt:hover {
+    text-shadow: none;
+    }
+    #container {
+        margin-top:100px;
+    }
+</style>
 <h2>Index</h2>
 <br />
-@Html.ActionLink("Page Polies", "ListPagePolicies")<br />
-@Html.ActionLink("Group Polies", "ListGroupPolicies")<br />
-@Html.ActionLink("User Polies", "ListUserPolicies")<br />
+<div id="container">
+    <a href="AccountBasic/ListPagePolicies">
+        <div id="tile" class="panel panel-default panel-profile m-b-0">
+            <div id="1" class="tileHead"></div>
+            <div id="tileTxt">Page Polies</div>
+        </div>
+    </a>
+    <a href="AccountBasic/GroupList">
+        <div id="tile" class="panel panel-default panel-profile m-b-0">
+            <div  id="2" class="tileHead"></div>
+            <div id="tileTxt">Groups</div>
+        </div>
+    </a>
+    <a href="AccountBasic/ListUserPolicies">
+        <div id="tile" class="panel panel-default panel-profile m-b-0">
+            <div  id="3" class="tileHead"></div>
+            <div id="tileTxt">User Policies</div>
+        </div>
+    </a>
+</div>
+

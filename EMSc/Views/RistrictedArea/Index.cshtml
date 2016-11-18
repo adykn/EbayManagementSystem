@@ -1,31 +1,57 @@
-﻿
+﻿@using EMSc.Models;
 @{
     ViewBag.Title = "Home";
-    
-}
+    string name = "";
+  
+    try
+    {
+        var UserData = ViewBag.User as IEnumerable<EMSc.Models.a_RolesModel>;
+        name = UserData.FirstOrDefault().SiteAccessUser.Name;
+    } catch { }
 
-   
+    //var pageData = UserData.FirstOrDefault().GroupPolicy.PageDefinition as IEnumerable<EMSc.Models.a_UserRolesModel>;
+
+    }
+
+
 <style>
     .panel-profile-img {
     max-width: 80px;
     height:80px;
     margin-top: -70px;
     margin-bottom: 5px;
-    border: 2px solid #000;
+    border: 2px solid rgba(150, 150, 150, 1);
     border-radius: 100%;
     box-shadow:5px 5px 10px rgba(0,0,0,0.2);
     background-color:#f7f7f7;
    
 }
         
+ 
+    #tile {
+      width:160px;float:left; margin:10px;text-align:center;height:110px;
+    box-shadow:5px 5px 10px rgba(0,0,0,0.2);
+    }
+    #tile:hover {
+        box-shadow:2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .tileHead { width:100%;height:55px;
+                background-image: url(https://image.freepik.com/free-vector/modern-abstract-background_1048-1003.jpg);background-size: cover
+    }
+    #tileTxt {
+   text-shadow: 2px 2px 1px rgba(150, 150, 150, 1);
+    } #tileTxt:hover {
+    text-shadow: none;
+    }
+    
 </style>
 <br />
-<div class="col-md-4 m-b-lg">
+<div class="col-md-4" >
     <div class="panel panel-default panel-profile m-b-0">
         <div class="panel-heading" style="height:150px;background-image: url(https://image.freepik.com/free-vector/modern-abstract-background_1048-1003.jpg);background-size: cover"></div>
         <div class="panel-body text-center">
             <img class="panel-profile-img" src="https://www.dropbox.com/s/6v7ujosgqj0xr7d/4logo.png?raw=1">
-            <h5 class="panel-title"><strong>@ViewBag.User.Name</strong></h5>
+            <h5 class="panel-title"><strong>@name</strong></h5>
             <p class="m-b" style="font-size:10px;">Administrator</p>
             <p class="m-b" style="font-size:10px;">
             @if (ViewBag.timeStamp!=null) {
@@ -36,5 +62,17 @@
             </a>
         </div>
     </div>
+</div>
+<div class="col-md-8 "  style="margin-top:-10px;">
+    @*@foreach (var row in UserData) {
+
+    <a href="@row.GroupPolicy.PageDefinition.Url">
+            <div id="tile" class="panel panel-default panel-profile m-b-0">
+                <div id="1" class="tileHead"></div>
+                <div id="tileTxt">@row.GroupPolicy.PageDefinition.Title</div>
+            </div>
+        </a>
+    }*@
+
 </div>
 

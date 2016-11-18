@@ -220,6 +220,7 @@
     <Compile Include="Helpers\toNameHelpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountModel.cs" />
+    <Compile Include="Models\a_GroupHeadModel.cs" />
     <Compile Include="Models\a_PageDefinitionModel.cs" />
     <Compile Include="Models\a_UserAAModel.cs" />
     <Compile Include="Models\getlistfrmFtp.cs" />
@@ -227,7 +228,7 @@
     <Compile Include="Models\a_GroupPoliciesModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageModel.cs" />
-    <Compile Include="Models\ItemsDataContext.cs" />
+    <Compile Include="Models\_ItemsDataContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PolicyModel.cs" />
     <Compile Include="Models\Products.cs" />
@@ -235,7 +236,8 @@
     <Compile Include="Models\ProductsVariationsModel.cs" />
     <Compile Include="Models\ShippingModel.cs" />
     <Compile Include="Models\ShippingServices.cs" />
-    <Compile Include="Models\a_UserRolesModel.cs" />
+    <Compile Include="Models\a_RolesModel.cs" />
+    <Compile Include="Models\StoreModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -315,6 +317,8 @@
     <Content Include="Views\Products\_Step1.cshtml" />
     <Content Include="Views\Products\_Step2.cshtml" />
     <Content Include="Views\Products\_Step4.cshtml" />
+    <Content Include="Views\AccountBasic\GroupAdd.cshtml" />
+    <Content Include="Views\AccountBasic\GroupList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

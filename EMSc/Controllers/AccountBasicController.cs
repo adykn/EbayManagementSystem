@@ -9,18 +9,20 @@ using System.Web.Mvc;
 namespace EMSc.Controllers
 {
    
-    enum AccessTypes { All, Create, Read, Update, Delete, option1, option2,option3 }
+    enum AccessTypes {  Create, Read, Update, Delete, Option1, Option2  }
     public class AccountBasicController : Controller
     {
-        private ItemsDataContext db = new ItemsDataContext();
+        private _ItemsDataContext db = new _ItemsDataContext();
 
         // GET: AccountBasic
+        #region "Page Policy"
+        
         public ActionResult Index()
         {
             if (Session["User"] != null)
             {
 
-                ViewBag.User = (a_UserAAModel)Session["User"];
+                ViewBag.User = (a_RolesModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
                 var model = db.PageDefinition.ToList();
                 return View("Index", model);
@@ -36,9 +38,13 @@ namespace EMSc.Controllers
             if (Session["User"] != null)
             {
                
-                ViewBag.User = (a_UserAAModel)Session["User"];
+                ViewBag.User = (a_RolesModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
-                    var model = db.PageDefinition.ToList(); 
+
+                var enums = Enum.GetNames(typeof(AccessTypes));
+                ViewBag.AccessType = enums;
+
+                var model = db.PageDefinition.ToList(); 
                     return View("ListPagePolicies", model);
             }
             else
@@ -50,11 +56,11 @@ namespace EMSc.Controllers
             if (Session["User"] != null)
             {
 
-                ViewBag.User = (a_UserAAModel)Session["User"];
+                ViewBag.User = (a_RolesModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
                 var enums = Enum.GetNames(typeof(AccessTypes));
                 ViewBag.AccessType = enums;
-                var model = db.PageDefinition.Where(c=>c.Pid== id);
+                var model = db.PageDefinition.Where(c=>c.id== id);
                 return View("Details" ,model);
             }
             else
@@ -88,7 +94,7 @@ namespace EMSc.Controllers
                 var enums = Enum.GetNames(typeof(AccessTypes));
                 ViewBag.AccessType = enums;
                 ViewBag.SubVal = "Update";
-                ViewBag.User = (a_UserAAModel)Session["User"];
+                ViewBag.User = (a_RolesModel)Session["User"];
                 ViewBag.timeStamp = Session["timeStamp"];
                 var model = db.PageDefinition.Find(id);
                 return View("create", model);
@@ -107,7 +113,7 @@ namespace EMSc.Controllers
                 {
                     var model = new a_PageDefinitionModel();
                     
-                    var db = new ItemsDataContext();
+                    var db = new _ItemsDataContext();
                     Dictionary<string, string> dict = new Dictionary<string, string>();
                     var enums = Enum.GetNames(typeof(AccessTypes));
                     var keys = Request.Form.AllKeys;
@@ -128,7 +134,7 @@ namespace EMSc.Controllers
                     {
                         x += dict[i];
                     }
-                    model.Pid = Convert.ToInt32(Request.Form.Get(keys[1]));
+                    model.id = Convert.ToInt32(Request.Form.Get(keys[1]));
                     model.Title = Request.Form.Get(keys[2]);
                     model.Url = Request.Form.Get(keys[3]);
                     model.Attribs = x;
@@ -210,5 +216,77 @@ namespace EMSc.Controllers
             }
         }
 
-    }
+        #endregion
+        #region "Groups "
+        public ActionResult GroupList()
+        {
+            if (Session["User"] != null)
+            {
+
+                ViewBag.User = (a_UserAAModel)Session["User"];
+                ViewBag.timeStamp = Session["timeStamp"];
+                ViewBag.SubVal = "Add";
+                ViewBag.GroupHead = db.GroupHead.ToList();
+               // ViewBag.Pages = db.PageDefinition.ToList();
+                var model = db.GroupPolicies.ToList();
+                    
+                var enums = Enum.GetNames(typeof(AccessTypes));
+                ViewBag.AccessType = enums;
+
+               
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+        }
+        public ActionResult GroupAdd() {
+            if (Session["User"] != null)
+            {
+
+                ViewBag.User = (a_UserAAModel)Session["User"];
+                ViewBag.timeStamp = Session["timeStamp"];
+                ViewBag.SubVal = "Add";
+                ViewBag.GroupHead = db.GroupHead.ToList();
+                ViewBag.Pages = db.PageDefinition.ToList();
+
+                var enums = Enum.GetNames(typeof(AccessTypes));
+                ViewBag.AccessType = enums;
+               
+                //ViewBag.GroupHead = new SelectList(db.a_GroupHeadModel, "id", "Title");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+        }
+         
+        public ActionResult GroupProcess()
+        {
+            if (Session["User"] != null)
+            {
+
+                ViewBag.User = (a_UserAAModel)Session["User"];
+                ViewBag.timeStamp = Session["timeStamp"];
+                ViewBag.SubVal = "Add";
+                ViewBag.GroupHead = db.GroupHead.ToList();
+                ViewBag.Pages = db.PageDefinition.ToList();
+
+                var enums = Enum.GetNames(typeof(AccessTypes));
+                ViewBag.AccessType = enums;
+
+                //ViewBag.GroupHead = new SelectList(db.a_GroupHeadModel, "id", "Title");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+        }
+
+            #endregion
+
+        }
 }

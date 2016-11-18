@@ -41,7 +41,7 @@ namespace EMSc.Controllers
         }
         public ActionResult ListOfProducts()
         {
-            var db = new ItemsDataContext();
+            var db = new _ItemsDataContext();
             var prod = db.Products;
             return View(prod);
         }
@@ -59,7 +59,7 @@ namespace EMSc.Controllers
             if (ModelState.IsValid)
             {
                 
-                var db = new ItemsDataContext();
+                var db = new _ItemsDataContext();
                 db.Products.Add(prod);
                 db.SaveChanges();
                 //var pro = new Products();

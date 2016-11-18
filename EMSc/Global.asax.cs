@@ -14,7 +14,7 @@ namespace EMSc
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<ItemsDataContext>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<_ItemsDataContext>());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

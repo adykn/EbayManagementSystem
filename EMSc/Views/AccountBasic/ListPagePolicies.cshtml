@@ -6,9 +6,12 @@
 
 <h2></h2>
 
-<p>
+<div style="width:100px;float:right">
     @Html.ActionLink("Create New", "Create")
-</p>
+</div>
+<div style="margin-top:60px;margin-bottom:20px;">
+     List of Pages ,  Url,  attributes. This list will define the pages by giving url when needed and what tasks can be performed in the page through the attributes.
+</div>
 <table class="table">
     <tr>
         <th>
@@ -32,12 +35,48 @@
             @Html.DisplayFor(modelItem => item.Url)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Attribs)
+            <style> 
+            #attribContainer {
+                width: 100%;
+                }
+
+            #attribs {
+                float: left;
+                text-align: center;
+                width: 70px;
+            }</style>
+            @{
+                char[] at = null;
+                string attrib = null;
+                string chVal = null;
+                int idx = 0;
+
+                attrib = item.Attribs;
+                at = attrib.ToCharArray();
+                if (ViewBag.AccessType.Length > at.Length)
+                {
+                    for (int q = 0; q < ViewBag.AccessType.Length - at.Length; q++)
+                    { attrib = attrib + 0; }
+                    at = attrib.ToCharArray();
+                }
+                
+                    }
+            <div id="attribContainer">
+                @foreach (var i in ViewBag.AccessType)
+                {
+
+                    chVal = (at[idx] == '1') ? "checked" : ""; idx += 1;
+                    <div id="attribs">
+                        @i<br /><input disabled type="checkbox" @chVal />
+                    </div>
+                }
+            </div>
+
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Pid }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Pid }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Pid })
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) 
+           <!-- | @Html.ActionLink("Delete", "Delete", new { id=item.id })--> 
         </td>
     </tr>
 }

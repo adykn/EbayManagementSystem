@@ -1,10 +1,12 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using EMSc.Models;
+@using Microsoft.AspNet.Identity
 
 @{ 
     string x = "?";
     try
     {
-        x= ViewBag.user.Name;
+        var UserData = ViewBag.User as IEnumerable<EMSc.Models.a_RolesModel>;
+        x = UserData.FirstOrDefault().SiteAccessUser.Name;
     }
     catch {
         x = "?";

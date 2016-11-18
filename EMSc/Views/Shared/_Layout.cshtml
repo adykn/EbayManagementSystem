@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using EMSc.Helpers;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,9 +18,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Ebay Managemet Application", "Index", "RistrictedArea", new { area = "" }, new { @class = "navbar-brand" })
+                <!-- @Html.ActionLink("EMA", "Index", "RistrictedArea", new { area = "" }, new { @class = "navbar-brand" })-->
+                @Html.ImageActionLink("List of Products", "ListOfProducts", "Home", null, null, "~/Content/img/ebay_1.png", "style", "position:absolute;width:128px;margin-top:-20px")
             </div>
-            <div class="navbar-collapse collapse">
+            
+            <div class="navbar-collapse collapse" style="margin-left:120px;">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Policies", "Index", "AccountBasic")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -32,12 +35,12 @@
     <div class="container body-content">
 
         @RenderBody()
-        <hr />
+        
 
         
-        <footer>
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        </footer>*@
     </div>
 
    @*@Scripts.Render("~/bundles/jquery")*@ 

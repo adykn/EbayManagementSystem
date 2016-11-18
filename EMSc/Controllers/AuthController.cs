@@ -11,12 +11,40 @@ namespace EMSc.Controllers
 {
     public class AuthController : Controller
     {
-        private ItemsDataContext db = new ItemsDataContext();
+        private _ItemsDataContext db = new _ItemsDataContext();
         // GET: Auth
         
         public ActionResult Index()
         {
+             var emp1 = db.UserAccessAccounts.ToList();
 
+            if (emp1.Count() == 0)
+            {
+
+                var emp = new a_UserAAModel();
+                emp.Email = "4d.kh4n@gmail.com";
+                emp.Name = "Adnan khan";
+                emp.Password = "test";
+                emp.Picfid = 0;
+                emp.Contact = "03339323452";
+                db.UserAccessAccounts.Add(emp);
+
+                var Gh1 = new a_GroupHeadModel(); Gh1.Title = "Developer"; db.GroupHead.Add(Gh1);
+                var Gh2 = new a_GroupHeadModel(); Gh2.Title = "Administration"; db.GroupHead.Add(Gh2);
+                var Gh3 = new a_GroupHeadModel(); Gh3.Title = "DataEntryOperator"; db.GroupHead.Add(Gh3);
+
+                var page = new a_PageDefinitionModel(); page.Title = "Products"; page.Url = "Products"; page.Attribs = "100";
+                var page1 = new a_PageDefinitionModel(); page1.Title = "Products2"; page1.Url = "Products"; page1.Attribs = "100";
+
+                var x = new a_GroupPoliciesModel(); x.Attribs = "100"; x.GroupHead = Gh1; x.PageDefinition = page;
+
+                var role = new a_RolesModel(); role.SiteAccessUser = emp; role.GroupPolicy = x;
+
+                db.SaveChanges();
+                RedirectToAction("Logout", "Auth");
+            }
+             
+           
             a_UserAAModel model = new a_UserAAModel();
             if (Request.Cookies["Login"] != null)
             {
@@ -37,7 +65,7 @@ namespace EMSc.Controllers
             {
                 
                   var emp = db.UserAccessAccounts.ToList();
-                 
+                    var role = db.UserRolePolicie.ToList();
                  
                 
                
@@ -46,7 +74,9 @@ namespace EMSc.Controllers
                 if (LoginUser != null)
                 {
                     FormsAuthentication.SetAuthCookie(loginDetails.Email, loginDetails.RememberMe);
-                    Session["User"] = LoginUser;
+                    var rsult=role.Where(x => x.SiteAccessUser.id == LoginUser.id);
+                    if (rsult == null) { ModelState.AddModelError("", "Login data is incorrect!"); }
+                    Session["User"] = rsult;
                     Session["timeStamp"] = DateTime.Now;
                     //Session["list"] = list.Find(LoginUser.id);
                     //var yourList1 = (a_siteaccessModel)Session["User"];
